@@ -1,21 +1,22 @@
 package dk.andreasjuul.galgeleg;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 
-
-public class Activity_game extends AppCompatActivity implements View.OnClickListener{
+public class Activity_game extends AppCompatActivity implements View.OnClickListener {
 
     TextView textViewWord, textViewErrors, textViewLettersUsed;
     EditText editTextGuess;
@@ -30,24 +31,25 @@ public class Activity_game extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        textViewWord = (TextView) findViewById(R.id.textViewWord);
-        textViewErrors = (TextView) findViewById(R.id.wrongLetters);
-        textViewLettersUsed = (TextView) findViewById(R.id.wrongLetters);
-        buttonGuess = (Button) findViewById(R.id.buttonGuess);
-        buttonBack = (Button) findViewById(R.id.buttonBack);
-        imageViewHangingMan = (ImageView) findViewById(R.id.Hangman);
+        textViewWord =findViewById(R.id.textViewWord);
+        textViewErrors = findViewById(R.id.wrongLetters);
+        textViewLettersUsed = findViewById(R.id.wrongLetters);
+        editTextGuess = findViewById(R.id.editTextGuess);
+        buttonGuess = findViewById(R.id.buttonGuess);
+        buttonBack = findViewById(R.id.buttonBack);
+        imageViewHangingMan = findViewById(R.id.Hangman);
 
         galgeLogik = new Galgelogik();
         galgeLogik.nulstil();
 
         textViewWord.setText(galgeLogik.getSynligtOrd());
 
-        textViewErrors.setText("" + galgeLogik.getAntalForkerteBogstaver() + " / 7 fejl.");
 
         buttonGuess.setOnClickListener(this);
         buttonBack.setOnClickListener(this);
 
     }
+
     public void onClick(View v) {
         String guessedLetters = "";
         if (v == buttonGuess) {
@@ -58,56 +60,68 @@ public class Activity_game extends AppCompatActivity implements View.OnClickList
             isGameFinished();
             guess(guessedLetters);
         }
-    }
+        if (v == buttonBack) {
+            finish();
+        }
+        }
+
     private void guess(String letterGuessed) {
         if (galgeLogik.erSidsteBogstavKorrekt()) {
             textViewWord.setText(galgeLogik.getSynligtOrd());
         } else {
-            if (!letterGuessed.isEmpty() && !wrongLetters.contains(letterGuessed.toString())) {
+            if (!letterGuessed.isEmpty() && !wrongLetters.contains(letterGuessed)) {
                 wrongLetters.add(letterGuessed);
             }
-            textViewErrors.setText("" + galgeLogik.getAntalForkerteBogstaver() + " / 7 fejl.");
             textViewLettersUsed.setText(wrongLetters.toString());
             changeImage(galgeLogik.getAntalForkerteBogstaver());
         }
     }
+
+    private void changeImage(int antalForkerteBogstaver) {
+        switch (antalForkerteBogstaver) {
+            case 1:
+                imageViewHangingMan.setImageResource(R.drawable.forkert1);
+                break;
+            case 2:
+                imageViewHangingMan.setImageResource(R.drawable.forkert2);
+                break;
+            case 3:
+                imageViewHangingMan.setImageResource(R.drawable.forkert3);
+                break;
+            case 4:
+                imageViewHangingMan.setImageResource(R.drawable.forkert4);
+                break;
+            case 5:
+                imageViewHangingMan.setImageResource(R.drawable.forkert5);
+                break;
+            case 6:
+                imageViewHangingMan.setImageResource(R.drawable.forkert6);
+                break;
+        }
+    }
+
     private void isGameFinished() {
         if (galgeLogik.erSpilletSlut()) {
             if (galgeLogik.erSpilletVundet()) {
                 buttonGuess.setText("Jaaa du har vundet!!!!");
-                buttonGuess.setOnClickListener(null);
-            } else
-
-            if (galgeLogik.erSpilletTabt()) {
+                buttonGuess.setOnClickListener(null);hideKeyboard(this);
+                startActivity(new Intent(this, Activity_win.class));
+            } else if (galgeLogik.erSpilletTabt()) {
                 buttonGuess.setText("Øv!! du tabte prøv igen!");
-                buttonGuess.setOnClickListener(null);
+                buttonGuess.setOnClickListener(null);hideKeyboard(this);
+                startActivity(new Intent(this, Activity_lost.class));
             }
         }
-
-         private void changeImage(int antalForkerteBogstaver){
-            switch (antalForkerteBogstaver) {
-                case 1:
-                    imageViewHangingMan.setImageResource(R.drawable.forkert1);
-                    break;
-                case 2:
-                    imageViewHangingMan.setImageResource(R.drawable.forkert2);
-                    break;
-                case 3:
-                    imageViewHangingMan.setImageResource(R.drawable.forkert3);
-                    break;
-                case 4:
-                    imageViewHangingMan.setImageResource(R.drawable.forkert4);
-                    break;
-                case 5:
-                    imageViewHangingMan.setImageResource(R.drawable.forkert5);
-                    break;
-                case 6:
-                    imageViewHangingMan.setImageResource(R.drawable.forkert6);
-                    break;
-            }
-        }
-
     }
-
-
+    //https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 }

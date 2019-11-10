@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">Galgeleg</string>
+    <string name="app_name">Andreas Juul Rasmussen S164933</string>
+
+    <!--Strings til Forside-->
+    <string name="navn">Galgespillet</string>
+    <string name="spil">Spil</string>
+    <string name="help">Hjælp</string>
 
     <!--Strings til GAME-->
     <string name="back">Tilbage</string>
@@ -8,7 +13,11 @@
     <string name="you_lost">Du desværre tabt har tabt</string>
     <string name="you_won">JAAA!! Du har vundet!</string>
 
-    <!--Strings til hjælpesiden-->
-    <string name="help">blablabla</string>
+    <!--Strings til Win-->
+    <string name="win">Jaaaa DU har vundet!!</string>
+    <!--Strings til Lost-->
+
+    <string name="lost">Desværre du tabte..</string>
+
 
 </resources>
