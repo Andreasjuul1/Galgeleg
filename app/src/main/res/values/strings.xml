@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Galgeleg</string>
+
+    <!--Strings til GAME-->
+    <string name="back">Tilbage</string>
+    <string name="guess">Gæt</string>
+    <string name="wrong_letters">Forkerte bogstaver</string>
+    <string name="you_lost">Du desværre tabt har tabt</string>
+    <string name="you_won">JAAA!! Du har vundet!</string>
+
+    <!--Strings til hjælpesiden-->
+    <string name="help">blablabla</string>
+
+</resources>
