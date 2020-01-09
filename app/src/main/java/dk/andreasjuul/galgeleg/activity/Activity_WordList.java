@@ -31,11 +31,12 @@ public class Activity_WordList extends AppCompatActivity implements View.OnClick
 
         ArrayList<String> words = galgelogikGetAllAvailable.muligeOrd;
         //Opbygning af adapter, taget fra Android developer
-        ListView listView = (ListView) findViewById(R.id.wordListView);
-        ArrayAdapter<String> wordAdapter = new ArrayAdapter<String>(this,R.layout.word_listview,R.id.words,words);
+        ListView listView = findViewById(R.id.wordListView);
+        ArrayAdapter<String> wordAdapter = new ArrayAdapter<>(this, R.layout.word_listview, R.id.words, words);
         listView.setAdapter(wordAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+            //Viker ikke, den går abre til et random ord i listen som Activity_Game vælger
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(view.getContext(), Activity_Game.class);
                 startActivity(intent);
