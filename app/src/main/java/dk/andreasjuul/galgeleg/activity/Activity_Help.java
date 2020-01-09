@@ -1,4 +1,4 @@
-package dk.andreasjuul.galgeleg.Activity;
+package dk.andreasjuul.galgeleg.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import dk.andreasjuul.galgeleg.MainActivity;
 import dk.andreasjuul.galgeleg.R;
 
 
-public class Activity_help extends AppCompatActivity implements View.OnClickListener {
+public class Activity_Help extends AppCompatActivity implements View.OnClickListener {
 
     TextView textHelp;
     Button buttonHome, buttonPlay;
@@ -25,9 +25,9 @@ public class Activity_help extends AppCompatActivity implements View.OnClickList
 
         buttonHome = findViewById(R.id.buttonBack);
         buttonPlay = findViewById(R.id.buttonPlay);
-
         buttonPlay.setOnClickListener(this);
         buttonHome.setOnClickListener(this);
+
     }
     @Override
     public void onClick(View v) {
@@ -35,7 +35,7 @@ public class Activity_help extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(this, MainActivity.class));
         }
         if (v == buttonPlay) {
-            startActivity(new Intent(this, Activity_game.class));
+            startActivity(new Intent(this, Activity_Game.class));
         }
     }
 }

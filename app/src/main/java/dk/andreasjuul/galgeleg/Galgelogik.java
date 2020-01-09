@@ -13,7 +13,7 @@ import java.util.Random;
 public class Galgelogik {
     private static int antalForkerteBogstaver;
     static ArrayList<String> OrdListeFraDR = null;
-    ArrayList<String> muligeOrd = new ArrayList<String>();
+    public ArrayList<String> muligeOrd = new ArrayList<String>();
     private String ordet;
     private ArrayList<String> brugteBogstaver = new ArrayList<String>();
     private String synligtOrd;

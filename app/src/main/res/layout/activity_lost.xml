@@ -1,39 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/grad_bg"
+    android:padding="20dp">
+
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/help"
-        android:textColor="@color/black"
+        android:text="@string/you_lost"
+        android:textColor="@color/colorBlack"
         android:textSize="30sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="254dp" />
-
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonBack"
-        android:text="Tilbage"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:textAllCaps="false"
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rellay2"
+        app:layout_constraintVertical_bias="0.905"
         tools:ignore="MissingConstraints" />
 
-
-    <Button
-        android:layout_width="0dp"
+    <RelativeLayout
+        android:id="@+id/rellay2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonPlay"
-        android:text="Spil"
-        android:textAllCaps="false"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp">
 
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:text="Tilbage"
+            android:textAllCaps="false"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/buttonPlay"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_bg"
+            android:text="Spil"
+            android:textAllCaps="false"
+            tools:ignore="MissingConstraints" />
+    </RelativeLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/crying"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:elevation="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rellay2"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/crying2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

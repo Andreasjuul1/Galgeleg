@@ -5,4 +5,8 @@
     <color name="colorAccent">#5050de</color>
     <color name="colorWhite">#ffff</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorTritanopia">#297677</color>
+    <color name="colorProtanopia">#4e4f71</color>
+    <color name="colorDeuteranopia">#484173</color>
+    <color name="colorAchromatomaly">#477468</color>
 </resources>

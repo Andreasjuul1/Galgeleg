@@ -1,4 +1,4 @@
-package dk.andreasjuul.galgeleg.Activity;
+package dk.andreasjuul.galgeleg.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import dk.andreasjuul.galgeleg.Galgelogik;
 import dk.andreasjuul.galgeleg.R;
 
 
-public class Activity_game extends AppCompatActivity implements View.OnClickListener {
+public class Activity_Game extends AppCompatActivity implements View.OnClickListener {
 
     TextView textViewWord, textViewErrors, textViewLettersUsed;
     EditText editTextGuess;
@@ -114,31 +114,27 @@ public class Activity_game extends AppCompatActivity implements View.OnClickList
                 buttonGuess.setText("Jaaa du har vundet!!!!");
                 buttonGuess.setOnClickListener(null);
                 hideKeyboard(this);
-                startActivity(new Intent(this, Activity_win.class));
+                addScore(galgeLogik.getSynligtOrd(),Highscore.calculate(galgeLogik.getAntalForkerteBogstaver(), galgeLogik.getSynligtOrd().length()));
+                startActivity(new Intent(this, Activity_Win.class));
                 galgeLogik.nulstil();
             } else if (galgeLogik.erSpilletTabt()) {
                 buttonGuess.setText("Øv!! du tabte prøv igen!");
                 buttonGuess.setOnClickListener(null);
                 hideKeyboard(this);
-                startActivity(new Intent(this, Activity_lost.class));
+                startActivity(new Intent(this, Activity_Lost.class));
                 galgeLogik.nulstil();
             }
         }
     }
 
-    //Tilføjer ens score til highscore listen
+    //Tilføjer ens score til highscore listen - taget fra Android developer
     private void addScore(String word, int score) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(word, score);
-        editor.commit(); // <--TODO skal ændres, lave highscore xml, konfetti og lottie færdig,  -->
+        editor.commit(); //
     }
 
-    //Opdaterer antallet af gange gættet forkert
-    private void updateWrongCounter() {
-        textViewErrors = findViewById(R.id.wrongLetters);
-        textViewErrors.setText(String.valueOf(Galgelogik.getAntalForkerteBogstaver()));
-    }
 
     //https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
     public static void hideKeyboard(Activity activity) {
