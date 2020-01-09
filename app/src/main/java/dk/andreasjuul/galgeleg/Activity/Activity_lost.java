@@ -1,21 +1,21 @@
-package dk.andreasjuul.galgeleg;
+package dk.andreasjuul.galgeleg.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import dk.andreasjuul.galgeleg.Galgelogik;
+import dk.andreasjuul.galgeleg.MainActivity;
+import dk.andreasjuul.galgeleg.R;
 
-public class Activity_help extends AppCompatActivity implements View.OnClickListener {
+public class Activity_lost extends AppCompatActivity implements View.OnClickListener {
 
-    TextView textHelp;
     Button buttonHome, buttonPlay;
+    Galgelogik galgeLogik;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class Activity_help extends AppCompatActivity implements View.OnClickList
         }
         if (v == buttonPlay) {
             startActivity(new Intent(this, Activity_game.class));
+            galgeLogik.nulstil();
         }
     }
 }

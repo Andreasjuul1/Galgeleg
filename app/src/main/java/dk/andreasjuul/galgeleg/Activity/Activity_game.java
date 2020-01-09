@@ -1,8 +1,10 @@
-package dk.andreasjuul.galgeleg;
+package dk.andreasjuul.galgeleg.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -14,6 +16,9 @@ import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import dk.andreasjuul.galgeleg.Galgelogik;
+import dk.andreasjuul.galgeleg.R;
 
 
 public class Activity_game extends AppCompatActivity implements View.OnClickListener {
@@ -31,7 +36,7 @@ public class Activity_game extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        textViewWord =findViewById(R.id.textViewWord);
+        textViewWord = findViewById(R.id.textViewWord);
         textViewErrors = findViewById(R.id.wrongLetters);
         textViewLettersUsed = findViewById(R.id.wrongLetters);
         editTextGuess = findViewById(R.id.editTextGuess);
@@ -44,12 +49,12 @@ public class Activity_game extends AppCompatActivity implements View.OnClickList
 
         textViewWord.setText(galgeLogik.getSynligtOrd());
 
-
         buttonGuess.setOnClickListener(this);
         buttonBack.setOnClickListener(this);
 
     }
 
+    //Lytter på tryk fra brugeren
     public void onClick(View v) {
         String guessedLetters = "";
         if (v == buttonGuess) {
@@ -63,8 +68,9 @@ public class Activity_game extends AppCompatActivity implements View.OnClickList
         if (v == buttonBack) {
             finish();
         }
-        }
+    }
 
+    //Bogstavs gæt bliver tjekket om de er korrekte eller forkerte. hvis forkerte bliver de tilføjet til listen.
     private void guess(String letterGuessed) {
         if (galgeLogik.erSidsteBogstavKorrekt()) {
             textViewWord.setText(galgeLogik.getSynligtOrd());
@@ -77,6 +83,7 @@ public class Activity_game extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    //Skifter billedet, efter hvor mange forkerte man har
     private void changeImage(int antalForkerteBogstaver) {
         switch (antalForkerteBogstaver) {
             case 1:
@@ -100,19 +107,39 @@ public class Activity_game extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    //Tjekker om spillet er slut, og derefter om man enten har tabt eller vundet
     private void isGameFinished() {
         if (galgeLogik.erSpilletSlut()) {
             if (galgeLogik.erSpilletVundet()) {
                 buttonGuess.setText("Jaaa du har vundet!!!!");
-                buttonGuess.setOnClickListener(null);hideKeyboard(this);
+                buttonGuess.setOnClickListener(null);
+                hideKeyboard(this);
                 startActivity(new Intent(this, Activity_win.class));
+                galgeLogik.nulstil();
             } else if (galgeLogik.erSpilletTabt()) {
                 buttonGuess.setText("Øv!! du tabte prøv igen!");
-                buttonGuess.setOnClickListener(null);hideKeyboard(this);
+                buttonGuess.setOnClickListener(null);
+                hideKeyboard(this);
                 startActivity(new Intent(this, Activity_lost.class));
+                galgeLogik.nulstil();
             }
         }
     }
+
+    //Tilføjer ens score til highscore listen
+    private void addScore(String word, int score) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(word, score);
+        editor.commit(); // <--TODO skal ændres, lave highscore xml, konfetti og lottie færdig,  -->
+    }
+
+    //Opdaterer antallet af gange gættet forkert
+    private void updateWrongCounter() {
+        textViewErrors = findViewById(R.id.wrongLetters);
+        textViewErrors.setText(String.valueOf(Galgelogik.getAntalForkerteBogstaver()));
+    }
+
     //https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);

@@ -1,4 +1,4 @@
-package dk.andreasjuul.galgeleg;
+package dk.andreasjuul.galgeleg.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Activity_lost extends AppCompatActivity implements View.OnClickListener {
+import dk.andreasjuul.galgeleg.MainActivity;
+import dk.andreasjuul.galgeleg.R;
 
+
+public class Activity_help extends AppCompatActivity implements View.OnClickListener {
+
+    TextView textHelp;
     Button buttonHome, buttonPlay;
 
     @Override

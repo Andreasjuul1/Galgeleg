@@ -6,48 +6,86 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/picture"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="169dp"
-        android:src="@drawable/hangmann"
-        app:layout_constraintBottom_toTopOf="@+id/play"
+    <com.airbnb.lottie.LottieAnimationView
+
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="50dp"
+        android:scaleType="centerCrop"
+        app:layout_constrainedHeight="true"
+        android:layout_marginTop="275dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/loading_success_failed" />
 
-    <Button
-        android:id="@+id/play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/picture"
-        android:layout_centerHorizontal="true"
-        android:width="650dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="bottom"
-        android:text="@string/spil"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/help"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/picture" />
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-    <Button
-        android:id="@+id/help"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/play"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:width="600dp"
-        android:gravity="bottom"
-        android:text="@string/help"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/play"
-        app:layout_constraintTop_toBottomOf="@+id/play"
-        tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/buttonData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:width="650dp"
+            android:gravity="bottom"
+            android:text="@string/hent"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/buttonHS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:width="650dp"
+            android:gravity="bottom"
+            android:text="@string/HighScore"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:width="650dp"
+            android:gravity="bottom"
+            android:text="@string/spil"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@+id/help"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/play"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:width="600dp"
+            android:gravity="bottom"
+            android:text="@string/help"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/play"
+            app:layout_constraintTop_toBottomOf="@+id/play"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

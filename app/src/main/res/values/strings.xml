@@ -1,10 +1,14 @@
 <resources>
-    <string name="app_name">Andreas Juul Rasmussen S164933</string>
+    <string name="app_name">S164933Andreas Juul Rasmussen</string>
+
 
     <!--Strings til Forside-->
     <string name="navn">Galgespillet</string>
     <string name="spil">Spil</string>
     <string name="help">Hjælp</string>
+    <string name="helpText">Hent først ord fra DR. Derefter spil spillet. Når du har spillet spillet minimum 1 gange, tjek highscore.</string>
+    <string name="hent">Hent ord fra DR</string>
+    <string name="HighScore">Highscore</string>
 
     <!--Strings til GAME-->
     <string name="back">Tilbage</string>
