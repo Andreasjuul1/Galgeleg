@@ -3,28 +3,34 @@
 
 
     <!--Strings til Forside-->
-    <string name="navn">Galgespillet</string>
-    <string name="spil">Spil</string>
-    <string name="help">Hjælp</string>
-    <string name="helpText">Velkommen til Hangman. Først tryk på knappen "Get words" i menuen. Appen henter dermed ord fra DRs hjemmeside. Klik på wordlist for at se de hentede ord. Highscore listen, vises når du har vundet første gang. Held og Lykke.</string>
-    <string name="hent">Hent ord fra DR</string>
+    <string name="name">Hangman</string>
+    <string name="play">Play</string>
+    <string name="help">Help</string>
+    <string name="helpText">Welcome to Hangman. First, press the "Get words" button in the menu. The app thus retrieves words from DRs website. Click on wordlist to see the retrieved words. The highscore list is displayed when you first win. Good luck</string>
+    <string name="get">Get Words</string>
     <string name="HighScore">Highscore</string>
+    <string name="Wordlist">Word List</string>
 
     <!--Strings til GAME-->
-    <string name="back">Tilbage</string>
-    <string name="guess">Gæt</string>
-    <string name="wrong_letters">Forkerte bogstaver</string>
-    <string name="you_lost">Du har desværre tabt, prøv igen!</string>
-    <string name="you_won">JAAA!! Du har vundet!</string>
+    <string name="back">Back</string>
+    <string name="guess">Guess</string>
+    <string name="wrong_letters">Wrong letters</string>
+    <string name="you_lost">Sorry… you lost :(</string>
+    <string name="you_won">YEEESS you WON!!</string>
 
     <!--Strings til GAME-->
-    <string name="HS">Point er udregnet efter gæt og længde på ord</string>
+    <string name="HS">Points are calculated bases on guesses and word length</string>
 
     <!--Strings til Win-->
-    <string name="win">Jaaaa DU har vundet!!</string>
+    <string name="win">YEEESS you WON!!</string>
     <!--Strings til Lost-->
+    <string name="lost">Sorry… you lost :( </string>
 
-    <string name="lost">Desværre du tabte..</string>
+    <!--Strings til Wordlist-->
+    <string name="Word">Word</string>
+    <string name="Score">Score</string>
+
+    <!--Strings til Highscore-->
 
 
 </resources>

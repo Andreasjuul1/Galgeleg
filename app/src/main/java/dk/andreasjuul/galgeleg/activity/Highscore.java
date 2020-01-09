@@ -8,7 +8,7 @@ public class Highscore implements Comparable<Highscore> {
         this.ord = ord;
         this.score = score;
     }
-
+    //Getters og setters
     public String getOrd() {
         return ord;
     }
@@ -25,19 +25,20 @@ public class Highscore implements Comparable<Highscore> {
         this.score = score;
     }
 
-    public static int calculate (int wrongWords, int lengthOfWord) {
+    //udregning af score
+    private static int calculate (int wrongWords, int lengthOfWord) {
         if(wrongWords == 0)
-            return ((1000/1)*lengthOfWord)+2000; //to avoid divide by 0
+            return ((1000/1)*lengthOfWord)+1;//sat til 1 pga. hvis ordet er kort.
         return ((1000/wrongWords)*lengthOfWord);
     }
 
     @Override
-    public int compareTo(Highscore o) {
-        int score1 = o.getScore();
-        int score2 = this.getScore();
-        if (score1 < score2)
+    public int compareTo(Highscore highscore) {
+        int hs1 = highscore.getScore();
+        int hs2 = this.getScore();
+        if (hs1 < hs2)
             return 1;
-        if(score1 == score2)
+        if(hs1 == hs2)
             return 0;
         else
             return -1;
